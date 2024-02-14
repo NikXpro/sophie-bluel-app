@@ -13,3 +13,23 @@ async function getData(type) {
     throw error;
   }
 }
+
+function createGallery(data) {
+  const gallery = document.querySelector('.gallery');
+  data.forEach(item => {
+    const figure = document.createElement('figure');
+    const img = document.createElement('img');
+    img.src = item.imageUrl;
+    img.alt = item.title;
+    const figcaption = document.createElement('figcaption');
+    figcaption.textContent = item.title;
+
+    figure.appendChild(img);
+    figure.appendChild(figcaption);
+    gallery.appendChild(figure);
+  });
+}
+
+getData("works").then(data => {
+  createGallery(data);
+})
