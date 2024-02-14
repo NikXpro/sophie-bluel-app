@@ -30,6 +30,45 @@ function createGallery(data) {
   });
 }
 
+getData("categories").then(data => {
+  const categoryList = document.querySelector('.category');
+  data.forEach(category => {
+    const li = document.createElement('li');
+    li.textContent = category.name;
+    li.id = category.id;
+    categoryList.appendChild(li);
+  });
+
+  const categoryElements = document.querySelectorAll('.category li');
+
+  categoryElements.forEach(category => {
+    category.addEventListener('click', (event) => {
+
+      const selectedCategory = Number(event.target.id);
+      
+      const gallery = document.querySelector('.gallery');
+      gallery.innerHTML = '';
+
+      getData("works").then(data => {
+
+        categoryElements.forEach(cat => {
+          cat.classList.remove('active');
+        });
+
+        event.target.classList.add('active');
+        
+        if (selectedCategory === 0) {
+          createGallery(data);
+          return;
+        }
+
+        createGallery(data.filter(item => item.category.id === selectedCategory));
+      });      
+    });
+
+  });
+})
+
 getData("works").then(data => {
   createGallery(data);
 })
