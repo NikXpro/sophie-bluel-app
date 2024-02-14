@@ -126,6 +126,43 @@ li:hover {
 	margin-bottom: 1em;
 }
 
+.category {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 2em;
+	gap: 0.62rem
+}
+
+.category li {
+	display: flex;
+	height: 100%;
+	padding: 9px 28px;
+	border-radius: 60px;
+	border: 1px #1D6154 solid;
+	justify-content: center;
+	color: #1D6154;
+
+	text-align: center;
+	font-family: Syne;
+	font-size: 1rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+}
+
+.category li:hover {
+	background: #207a69;
+	border-color: #207a69;
+	cursor: pointer;
+	color: white;
+}
+
+
+.category .active {
+	background: #1D6154;
+	color: white;
+}
+
 .gallery {
 	width: 100%;
 	display: grid;
