@@ -466,6 +466,7 @@ footer nav ul {
 }
 
 .overlay {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -485,7 +486,7 @@ footer nav ul {
   border-radius: 0.625rem;
   background: #fff;
 
-  display: inline-flex;
+  display: none;
   padding: 1.625rem 1.875rem 3.5rem 1.875rem;
   flex-direction: column;
   align-items: center;
@@ -511,6 +512,7 @@ footer nav ul {
 }
 
 .modal-header .icon {
+  cursor: pointer;
   display: flex;
   flex-direction: row-reverse;
   width: 100%;

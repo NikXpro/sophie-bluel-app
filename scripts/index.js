@@ -6,9 +6,23 @@ const selectors = [
     selector: "project",
     text: "Modifier",
     color: "#000000",
-    clickHandler: () => {},
+    clickHandler: () => {
+      toggleModal();
+    },
   },
 ];
+function toggleModal() {
+  const overlay = document.querySelector(".overlay");
+  const modal = document.querySelector(".modal");
+
+  if (overlay.style.display === "block" && modal.style.display === "flex") {
+    overlay.style.display = "none";
+    modal.style.display = "none";
+  } else {
+    overlay.style.display = "block";
+    modal.style.display = "flex";
+  }
+}
 
 function createGallery(data) {
   const gallery = document.querySelector(".gallery");
@@ -135,6 +149,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
       debug.style.display = "none";
 
       localStorage.removeItem("token");
+    });
+
+    const close = document.querySelector(".modal .close");
+    close.addEventListener("click", () => {
+      toggleModal();
     });
   }
 });
