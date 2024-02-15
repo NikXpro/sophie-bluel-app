@@ -29,7 +29,7 @@ export function toggleModal() {
  * @param {string} step - Represents the action to be performed. Can be either "next" or "back".
  */
 export function switchModal(step) {
-  if (modalActive <= 0 || modalActive >= 2) {
+  if (modalActive <= 0 || modalActive >= 1) {
     modalActive = 0;
     toggleModal();
     return;
