@@ -1,33 +1,50 @@
 const apiUrl = "http://localhost:5678/api/";
 
+/**
+ * Makes an asynchronous HTTP request to an API endpoint and returns the response data.
+ * @param {string} type - The type of data to fetch from the API.
+ * @returns {Promise<object>} - The response data from the API.
+ * @throws {Error} - If there is an HTTP error or an error with the fetch operation.
+ */
 export async function getData(type) {
   try {
     const response = await fetch(apiUrl + type);
     if (!response.ok) {
-      throw new Error("Erreur HTTP: " + response.status);
+      throw new Error(`HTTP Error: ${response.status}`);
     }
-    const data = await response.json();
-    return data;
+    return await response.json();
   } catch (error) {
     console.error(
-      "Il y a eu un problème avec l'opération fetch: " + error.message
+      `There was a problem with the fetch operation: ${error.message}`
     );
     throw error;
   }
 }
 
+/**
+ * Sends a POST request to a specified API endpoint with the provided data.
+ * @param {string} type - The API endpoint type.
+ * @param {object} data - The data to be sent in the request body.
+ * @returns {Promise<object>} - A Promise that resolves to the JSON response from the API.
+ */
 export async function postData(type = "", data = {}) {
-  const response = await fetch(apiUrl + type, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
+  try {
+    const response = await fetch(apiUrl + type, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
 
-  if (!response.ok) {
-    throw new Error("Erreur HTTP: " + response.status);
+    if (!response.ok) {
+      throw new Error("HTTP Error: " + response.status);
+    }
+
+    return response.json();
+  } catch (error) {
+    throw new Error(
+      "An error occurred while making the POST request: " + error.message
+    );
   }
-
-  return response.json();
 }
