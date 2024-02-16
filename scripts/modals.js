@@ -48,7 +48,7 @@ export function toggleModal() {
 
 export function clearModal() {
   const gallery = document.querySelector(".modal");
-  gallery.innerHTML = "";
+  gallery.remove();
 }
 
 /**
