@@ -35,20 +35,17 @@ getData("categories").then((data) => {
     category.addEventListener("click", (event) => {
       const selectedCategory = Number(event.target.id);
 
-      const gallery = document.querySelector(".gallery");
-      gallery.innerHTML = "";
-
       categoryElements.forEach((cat) => {
         cat.classList.remove("active");
       });
 
       event.target.classList.add("active");
       if (selectedCategory === 0) {
-        updateGallery();
+        updateGallery(null, "main");
         return;
       }
 
-      updateGallery(selectedCategory);
+      updateGallery(selectedCategory, "main");
     });
   });
 });
@@ -117,7 +114,7 @@ async function resetLogout() {
 }
 
 document.addEventListener("DOMContentLoaded", (event) => {
-  updateGallery();
+  updateGallery(null, "main");
 
   if (localStorage.token) {
     const logout = document.querySelector("#login a");
