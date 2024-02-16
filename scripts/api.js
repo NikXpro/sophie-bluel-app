@@ -12,7 +12,7 @@ export async function getData(type) {
     if (!response.ok) {
       throw new Error(`HTTP Error: ${response.status}`);
     }
-    return await response.json();
+    return response.json();
   } catch (error) {
     console.error(
       `There was a problem with the fetch operation: ${error.message}`
