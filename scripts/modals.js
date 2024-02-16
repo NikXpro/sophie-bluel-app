@@ -46,9 +46,14 @@ export function toggleModal() {
   modalActive = 0;
 }
 
+/**
+ * Removes the modal element from the DOM.
+ */
 export function clearModal() {
-  const gallery = document.querySelector(".modal");
-  gallery.remove();
+  const modal = document.querySelector(".modal");
+  if (modal) {
+    modal.remove();
+  }
 }
 
 /**
@@ -70,41 +75,65 @@ export function switchModal(step) {
   setModal();
 }
 
+/**
+ * Updates the modal based on the current value of `modalActive` variable.
+ * @returns {void}
+ */
 function setModal() {
+  // Get references to the close and back buttons in the modal header
   const closeButton = document.querySelector(".modal-header .close");
+  const backButton = document.querySelector(".modal-header .back");
+
+  // Set the display property of the close button to "flex" to make it visible
   closeButton.style.display = "flex";
 
-  const backButton = document.querySelector(".modal-header .back");
+  // Set the display property of the back button based on the value of `modalsManager[modalActive].header.back`
   backButton.style.display = modalsManager[modalActive].header.back
     ? "flex"
     : "none";
 
+  // Get a reference to the modal title element and set its text content
   const modalTitle = document.querySelector(".modal h3");
   modalTitle.textContent = modalsManager[modalActive].header.title;
 
+  // Get the value of `modalsManager[modalActive].body.type`
   const type = modalsManager[modalActive].body.type;
 
+  // Hide the form and show the gallery if the type is "gallery"
   if (type === "gallery") {
     const form = document.querySelector(".modal-body .form-modal");
-    form.style.display = "none";
     const gallery = document.querySelector(".modal-body .gallery-modal");
+
+    form.style.display = "none";
     gallery.style.display = "flex";
 
+    // Fetch data from the server using the `getData` function with the argument "works"
     getData("works").then((data) => {
+      // Call the `createModalGallery` function with the fetched data to populate the gallery
       createModalGallery(data);
     });
-  } else if (type === "form") {
+  }
+  // Hide the gallery and show the form if the type is "form"
+  else if (type === "form") {
     const gallery = document.querySelector(".modal-body .gallery-modal");
-    gallery.style.display = "none";
     const form = document.querySelector(".modal-body .form-modal");
+
+    gallery.style.display = "none";
     form.style.display = "flex";
   }
 
+  // Get a reference to the footer button and set its value
   const footerButton = document.querySelector(".modal-footer input");
   footerButton.value = modalsManager[modalActive].footer.button;
 }
 
+/**
+ * Dynamically creates a modal HTML structure and adds it to the DOM.
+ * Attaches event listeners to the close, back, and footer buttons.
+ * Calls the `setModal` function to initialize the modal content.
+ */
 export function createModal() {
+  // Define the modal HTML structure
   const modalHTML = `
     <div class="modal">
       <div class="modal-header">
@@ -126,24 +155,20 @@ export function createModal() {
     </div>
   `;
 
+  // Insert the modal HTML as the last child of the `main` element in the DOM
   const main = document.querySelector("main");
   main.insertAdjacentHTML("beforeend", modalHTML);
 
+  // Get references to the close, back, and footer buttons
   const closeButton = document.querySelector(".modal-header .close");
   const backButton = document.querySelector(".modal-header .back");
   const footerButton = document.querySelector(".modal-footer input");
 
-  closeButton.addEventListener("click", () => {
-    toggleModal();
-  });
+  // Attach event listeners to the buttons
+  closeButton.addEventListener("click", toggleModal);
+  backButton.addEventListener("click", () => switchModal("back"));
+  footerButton.addEventListener("click", () => switchModal("next"));
 
-  backButton.addEventListener("click", () => {
-    switchModal("back");
-  });
-
-  footerButton.addEventListener("click", () => {
-    switchModal("next");
-  });
-
+  // Initialize the modal content
   setModal();
 }
