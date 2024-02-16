@@ -1,4 +1,5 @@
 import { getData } from "./api.js";
+import { updateGallery } from "./gallery.js";
 import { switchModal, toggleModal } from "./modals.js";
 
 const selectors = [
@@ -19,24 +20,6 @@ const selectors = [
  * @param {Array} data - An array of objects representing the images to be displayed in the gallery.
  * Each object should have `imageUrl` and `title` properties.
  */
-function createGallery(data) {
-  const gallery = document.querySelector(".gallery");
-
-  data.forEach((item) => {
-    const figure = document.createElement("figure");
-    const img = document.createElement("img");
-    const figcaption = document.createElement("figcaption");
-
-    img.src = item.imageUrl;
-    img.alt = item.title;
-    figcaption.textContent = item.title;
-
-    figure.appendChild(img);
-    figure.appendChild(figcaption);
-    gallery.appendChild(figure);
-  });
-}
-
 getData("categories").then((data) => {
   const categoryList = document.querySelector(".category");
   data.forEach((category) => {
@@ -55,22 +38,17 @@ getData("categories").then((data) => {
       const gallery = document.querySelector(".gallery");
       gallery.innerHTML = "";
 
-      getData("works").then((data) => {
-        categoryElements.forEach((cat) => {
-          cat.classList.remove("active");
-        });
-
-        event.target.classList.add("active");
-
-        if (selectedCategory === 0) {
-          createGallery(data);
-          return;
-        }
-
-        createGallery(
-          data.filter((item) => item.category.id === selectedCategory)
-        );
+      categoryElements.forEach((cat) => {
+        cat.classList.remove("active");
       });
+
+      event.target.classList.add("active");
+      if (selectedCategory === 0) {
+        updateGallery();
+        return;
+      }
+
+      updateGallery(selectedCategory);
     });
   });
 });
@@ -139,9 +117,7 @@ async function resetLogout() {
 }
 
 document.addEventListener("DOMContentLoaded", (event) => {
-  getData("works").then((data) => {
-    createGallery(data);
-  });
+  updateGallery();
 
   if (localStorage.token) {
     const logout = document.querySelector("#login a");

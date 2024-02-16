@@ -529,7 +529,7 @@ footer nav ul {
   overflow: hidden;
 }
 
-.modal-body .galery {
+.modal-body .gallery-modal {
   display: flex;
   align-items: flex-start;
   align-content: flex-start;
@@ -540,7 +540,7 @@ footer nav ul {
   flex-shrink: 0;
 }
 
-.galery .card {
+.gallery-modal .card {
   display: flex;
   position: relative;
   width: 4.88269rem;
@@ -552,12 +552,12 @@ footer nav ul {
   overflow: hidden;
 }
 
-.galery .card img {
+.gallery-modal .card img {
   flex: 1 0 0;
   align-self: stretch;
 }
 
-.galery .card .delete {
+.gallery-modal .card .delete {
   display: flex;
   padding: 5px;
   justify-content: center;
@@ -571,7 +571,7 @@ footer nav ul {
   background: #000;
 }
 
-.galery .card .delete img {
+.gallery-modal .card .delete img {
   width: 0.5625rem;
   height: 0.6875rem;
 }

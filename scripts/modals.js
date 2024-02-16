@@ -1,3 +1,6 @@
+import { getData } from "./api.js";
+import { createModalGallery } from "./gallery.js";
+
 let modalActive = 0;
 
 const modalsManager = [
@@ -45,3 +48,34 @@ export function switchModal(step) {
     // Go to the previous page
   }
 }
+
+function createModal() {
+  const modalHTML = `
+    <div class="modal">
+      <div class="modal-header">
+        <div class="icon">
+          <img class="close" src="assets/icons/xmark.svg" alt="">
+          <img class="back" src="assets/icons/arrow-left.svg" alt="">
+        </div>
+        <h3>Galerie photo</h3>
+      </div>
+      <div class="modal-body">
+        <div class="gallery-modal">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="line"></div>
+        <input type="submit" value="Ajouter une photo">
+      </div>
+    </div>
+  `;
+
+  getData("works").then((data) => {
+    createModalGallery(data);
+  });
+
+  const main = document.querySelector("main");
+  main.insertAdjacentHTML("beforeend", modalHTML);
+}
+
+createModal();
