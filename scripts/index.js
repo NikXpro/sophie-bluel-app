@@ -1,6 +1,6 @@
 import { getData } from "./api.js";
 import { updateGallery } from "./gallery.js";
-import { switchModal, toggleModal } from "./modals.js";
+import { clearModal, createModal, toggleModal } from "./modals.js";
 
 const selectors = [
   { selector: "banner", text: "Mode édition", color: "#ffffff" },
@@ -121,26 +121,19 @@ document.addEventListener("DOMContentLoaded", (event) => {
     logout.href = "#";
     logout.textContent = "logout";
     addEditElements();
+    createModal();
+
     const debug = document.querySelector(".debug");
     debug.textContent = "Token: " + localStorage.token;
 
     logout.addEventListener("click", () => {
       clearEditElements();
       resetLogout();
+      clearModal();
       debug.textContent = "";
       debug.style.display = "none";
 
       localStorage.removeItem("token");
-    });
-
-    const close = document.querySelector(".modal .close");
-    close.addEventListener("click", () => {
-      toggleModal();
-    });
-
-    const back = document.querySelector(".modal .back");
-    back.addEventListener("click", () => {
-      switchModal("back");
     });
   }
 });
