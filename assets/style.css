@@ -520,6 +520,10 @@ footer nav ul {
   align-items: center;
 }
 
+.modal-header .icon img {
+  display: none;
+}
+
 .modal-body {
   display: flex;
   flex-direction: column;
@@ -530,7 +534,7 @@ footer nav ul {
 }
 
 .modal-body .gallery-modal {
-  display: flex;
+  display: none;
   align-items: flex-start;
   align-content: flex-start;
   flex-wrap: wrap;
