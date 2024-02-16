@@ -6,7 +6,7 @@ const apiUrl = "http://localhost:5678/api/";
  * @returns {Promise<object>} - The response data from the API.
  * @throws {Error} - If there is an HTTP error or an error with the fetch operation.
  */
-export async function getData(type) {
+export async function getData(type = "") {
   try {
     const response = await fetch(apiUrl + type);
     if (!response.ok) {
