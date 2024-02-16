@@ -33,6 +33,7 @@ export async function postData(type = "", data = {}) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${(localStorage.token = "token")}`,
       },
       body: JSON.stringify(data),
     });
