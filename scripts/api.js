@@ -48,3 +48,31 @@ export async function postData(type = "", data = {}) {
     );
   }
 }
+
+/**
+ * Sends a DELETE request to a specified API endpoint with the provided token.
+ * @param {string} type - The API endpoint type.
+ * @param {string} token - The token to be included in the request headers.
+ * @returns {Promise<object>} - A Promise that resolves to the JSON response from the API.
+ */
+export async function deleteData(type = "") {
+  try {
+    const response = await fetch(apiUrl + type, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("HTTP Error: " + response.status);
+    }
+
+    return response.json();
+  } catch (error) {
+    throw new Error(
+      "An error occurred while making the DELETE request: " + error.message
+    );
+  }
+}
