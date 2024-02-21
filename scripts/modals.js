@@ -14,6 +14,9 @@ const modalsManager = [
     },
     footer: {
       button: "Ajouter une photo",
+      clickHandler: (data) => {
+        switchModal("next");
+      },
     },
   },
   {
@@ -26,6 +29,8 @@ const modalsManager = [
     },
     footer: {
       button: "Valider",
+      clickHandler: (data) => {
+      },
     },
   },
 ];
@@ -167,7 +172,10 @@ export function createModal() {
   // Attach event listeners to the buttons
   closeButton.addEventListener("click", toggleModal);
   backButton.addEventListener("click", () => switchModal("back"));
-  footerButton.addEventListener("click", () => switchModal("next"));
+  footerButton.addEventListener("click", (event) =>
+    modalsManager[modalActive].footer.clickHandler(event)
+  );
+  overlay.addEventListener("click", toggleModal);
 
   // Initialize the modal content
   setModal();
