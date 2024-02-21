@@ -11,10 +11,13 @@ document
     document.querySelector(".err-password").style.display = "none";
 
     try {
-      const data = await postData("users/login", {
-        email: email,
-        password: password,
-      });
+      const data = await postData(
+        "users/login",
+        JSON.stringify({
+          email: email,
+          password: password,
+        })
+      );
       localStorage.setItem("id", data.userId);
       localStorage.setItem("token", data.token);
       window.location.href = "/";

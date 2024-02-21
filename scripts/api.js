@@ -27,15 +27,19 @@ export async function getData(type = "") {
  * @param {object} data - The data to be sent in the request body.
  * @returns {Promise<object>} - A Promise that resolves to the JSON response from the API.
  */
-export async function postData(type = "", data = {}) {
+export async function postData(
+  type = "",
+  data = {},
+  headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${localStorage.token}`,
+  }
+) {
   try {
     const response = await fetch(apiUrl + type, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${(localStorage.token = "token")}`,
-      },
-      body: JSON.stringify(data),
+      headers: headers,
+      body: data,
     });
 
     if (!response.ok) {
