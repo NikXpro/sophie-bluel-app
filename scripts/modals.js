@@ -1,3 +1,4 @@
+import { addGalleryItem, createrModalForm } from "./add.js";
 import { getData } from "./api.js";
 import { createModalGallery } from "./gallery.js";
 
@@ -21,7 +22,7 @@ const modalsManager = [
   },
   {
     header: {
-      title: "Ajouter une photo",
+      title: "Ajout photo",
       back: true,
     },
     body: {
@@ -30,6 +31,7 @@ const modalsManager = [
     footer: {
       button: "Valider",
       clickHandler: (data) => {
+        addGalleryItem(data);
       },
     },
   },
@@ -104,11 +106,13 @@ function setModal() {
   // Get the value of `modalsManager[modalActive].body.type`
   const type = modalsManager[modalActive].body.type;
 
+  const gallery = document.querySelector(".modal-body .gallery-modal");
+  const form = document.querySelector(".modal-body .form-modal");
+  gallery.innerHTML = "";
+  form.innerHTML = "";
+
   // Hide the form and show the gallery if the type is "gallery"
   if (type === "gallery") {
-    const form = document.querySelector(".modal-body .form-modal");
-    const gallery = document.querySelector(".modal-body .gallery-modal");
-
     form.style.display = "none";
     gallery.style.display = "flex";
 
@@ -120,11 +124,13 @@ function setModal() {
   }
   // Hide the gallery and show the form if the type is "form"
   else if (type === "form") {
-    const gallery = document.querySelector(".modal-body .gallery-modal");
-    const form = document.querySelector(".modal-body .form-modal");
-
     gallery.style.display = "none";
     form.style.display = "flex";
+
+    getData("categories").then((data) => {
+      // Call the `createrModalForm` function with the fetched data to category
+      createrModalForm(data);
+    });
   }
 
   // Get a reference to the footer button and set its value
@@ -143,19 +149,18 @@ export function createModal() {
     <div class="modal">
       <div class="modal-header">
         <div class="icon">
-          <img class="close" src="assets/icons/xmark.svg" alt="">
-          <img class="back" src="assets/icons/arrow-left.svg" alt="">
+          <img class="close" src="assets/icons/xmark.svg" alt="" />
+          <img class="back" src="assets/icons/arrow-left.svg" alt="" />
         </div>
         <h3>Undefined</h3>
       </div>
       <div class="modal-body">
-        <div class="gallery-modal">
-        </div>
+        <div class="gallery-modal"></div>
         <div class="form-modal"></div>
       </div>
       <div class="modal-footer">
         <div class="line"></div>
-        <input type="submit" value="Ajouter une photo">
+        <input type="submit" value="Ajouter une photo" id="submit" />
       </div>
     </div>
   `;

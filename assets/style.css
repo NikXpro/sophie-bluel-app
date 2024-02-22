@@ -527,9 +527,10 @@ footer nav ul {
 .modal-body {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 2.1875rem;
   height: 100%;
+  width: 100%;
   overflow: hidden;
 }
 
@@ -613,4 +614,171 @@ footer nav ul {
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+}
+
+.modal-footer input[type="submit"]:disabled {
+  background-color: #a7a7a7;
+  cursor: auto;
+}
+
+.form-modal {
+  width: 26.25rem;
+}
+
+.form-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.1875rem;
+  width: 100%;
+}
+.form-modal .file-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 13.625rem;
+  border-radius: 0.1875rem;
+  background: #e8f1f6;
+}
+
+.form-modal .input {
+  display: flex;
+  /*padding: 1.8125rem 0rem;*/
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4375rem;
+  width: 100%;
+  height: 100%;
+  align-self: stretch;
+}
+.form-modal .file-container .preview {
+  display: none;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.form-modal .file-container .preview img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.file-container input[type="file"] {
+  display: none;
+}
+
+.file-container label span {
+  display: flex;
+  width: 10.8125rem;
+  height: 2.25rem;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+
+  border-radius: 3.125rem;
+  background: #cbd6dc;
+
+  color: #306685;
+  text-align: center;
+  font-family: "Work Sans";
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.file-container label span:hover {
+  cursor: pointer;
+  background: #c4d4dd;
+}
+
+.file-container p {
+  color: #444;
+  text-align: center;
+  font-family: "Work Sans";
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.file-container svg {
+  width: 4.75rem;
+  height: 4.75rem;
+}
+
+.form-modal .info {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  width: 26.25rem;
+}
+
+.form-modal .info .field {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.form-modal .info input {
+  height: 50px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  padding: 0 1rem;
+
+  color: #444;
+  font-family: "Work Sans";
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.form-modal .info .title {
+  margin: 2rem 0 1em 0;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.form-modal .info .first {
+  margin-top: 0px;
+}
+
+.form-modal .info select {
+  width: 100%;
+  height: 50px;
+  font-size: 1.2em;
+  border: 1px solid rgba(255, 255, 255, 1);
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  padding: 0 1rem;
+  outline: none;
+
+  color: #444;
+  font-family: "Work Sans";
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.select-container {
+  width: 100%;
+  position: relative;
+  display: inline-block;
+}
+.select-arrow {
+  position: absolute;
+  right: 1rem; /* Ajuste cette valeur pour décaler la flèche vers la gauche */
+  top: 40%;
+  color: #000;
+  transform: translateY(0%);
+  /* Ici, tu peux ajouter le style pour la flèche, comme un caractère ou une image */
+  content: url(icons/chevron-down-solid\ 1.svg); /* Utilise une icône ou une image comme flèche */
 }
