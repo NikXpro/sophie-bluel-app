@@ -168,6 +168,7 @@ export function createModal() {
   const closeButton = document.querySelector(".modal-header .close");
   const backButton = document.querySelector(".modal-header .back");
   const footerButton = document.querySelector(".modal-footer input");
+  const overlay = document.querySelector(".overlay");
 
   // Attach event listeners to the buttons
   closeButton.addEventListener("click", toggleModal);
