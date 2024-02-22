@@ -74,7 +74,7 @@ export async function deleteData(type = "") {
       throw new Error("HTTP Error: " + response.status);
     }
 
-    return response.json();
+    return response;
   } catch (error) {
     throw new Error(
       "An error occurred while making the DELETE request: " + error.message
