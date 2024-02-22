@@ -123,15 +123,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
     addEditElements();
     createModal();
 
-    const debug = document.querySelector(".debug");
-    debug.textContent = "Token: " + localStorage.token;
-
     logout.addEventListener("click", () => {
       clearEditElements();
       resetLogout();
       clearModal();
-      debug.textContent = "";
-      debug.style.display = "none";
 
       localStorage.removeItem("token");
     });
