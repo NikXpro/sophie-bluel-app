@@ -9,6 +9,12 @@ let formState = {
 };
 
 export function createrModalForm(category) {
+  formState = {
+    image: false,
+    title: false,
+    category: false,
+  };
+
   const formDiv = document.querySelector(`.form-modal`);
 
   const submitButton = document.getElementById("submit");
