@@ -78,7 +78,8 @@ export function switchModal(step) {
     // Go to the previous page
   }
   console.log(modalActive, step);
-
+  const submitButton = document.getElementById("submit");
+  submitButton.disabled = false;
   setModal();
 }
 
