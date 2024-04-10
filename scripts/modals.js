@@ -165,7 +165,7 @@ export function createModal() {
       </div>
     </div>
   `;
-
+  // TODO: Use Dialog Element instead of custom modal
   // Insert the modal HTML as the last child of the `main` element in the DOM
   const main = document.querySelector("main");
   main.insertAdjacentHTML("beforeend", modalHTML);

@@ -31,6 +31,10 @@ getData("categories").then((data) => {
 
   const categoryElements = document.querySelectorAll(".category li");
 
+  if (localStorage.token) {
+    categoryList.style.display = "none";
+  }
+
   categoryElements.forEach((category) => {
     category.addEventListener("click", (event) => {
       const selectedCategory = Number(event.target.id);
