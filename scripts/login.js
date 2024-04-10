@@ -11,6 +11,19 @@ document
     document.querySelector(".err-password").style.display = "none";
 
     try {
+      /**
+       * Response data from the login API call.
+       * @typedef {Object} LoginResponse
+       * @property {string} token - The authentication token.
+       * @property {string} userId - The user ID.
+       */
+
+      /**
+       * Makes a POST request to the login API endpoint.
+       * @param {string} url - The API endpoint URL.
+       * @param {string} body - The request body.
+       * @returns {Promise<LoginResponse>} The response data.
+       */
       const data = await postData(
         "users/login",
         JSON.stringify({
