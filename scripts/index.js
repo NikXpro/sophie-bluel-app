@@ -131,6 +131,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
       clearEditElements();
       resetLogout();
       clearModal();
+      const categoryList = document.querySelector(".category");
+      categoryList.style.display = "flex";
 
       localStorage.removeItem("token");
     });
